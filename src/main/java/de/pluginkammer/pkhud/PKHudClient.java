@@ -17,6 +17,6 @@ public class PKHudClient implements ClientModInitializer {
 
         KeybindManager.register();
 
-        System.out.println("Pluginkammer HUD geladen!");
+        System.out.println("Pluginkammer HUD 1.0 geladen!");
     }
 }
