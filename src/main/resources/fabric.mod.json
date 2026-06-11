@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "pkhud",
+  "version": "1.0.0",
+  "name": "Pluginkammer HUD",
+  "description": "FPS, Koordinaten, Ping und Playtime pro Server.",
+  "authors": [
+    "Pluginkammer"
+  ],
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "de.pluginkammer.pkhud.PKHudClient"
+    ]
+  },
+  "depends": {
+    "fabricloader": "*",
+    "minecraft": "*"
+  }
+}
