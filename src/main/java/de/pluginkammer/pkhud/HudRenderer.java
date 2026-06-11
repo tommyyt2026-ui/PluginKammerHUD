@@ -12,6 +12,10 @@ public class HudRenderer implements HudRenderCallback {
     @Override
     public void onHudRender(DrawContext drawContext, float tickDelta) {
 
+        if (!KeybindManager.hudEnabled) {
+            return;
+        }
+
         if (client.player == null) {
             return;
         }
