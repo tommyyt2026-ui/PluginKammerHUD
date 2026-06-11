@@ -7,16 +7,25 @@ public class PlaytimeManager {
 
     private static final Map<String, Long> playtimes = new HashMap<>();
     private static long lastUpdate = System.currentTimeMillis();
+    private static String lastServer = "";
 
     public static void tick() {
+
         String server = ServerTracker.getCurrentServer();
 
         long now = System.currentTimeMillis();
+
+        // Server gewechselt → Timer reset
+        if (!server.equals(lastServer)) {
+            lastServer = server;
+            lastUpdate = now;
+            return;
+        }
+
         long diff = (now - lastUpdate) / 1000;
 
         if (diff > 0) {
-            playtimes.put(
-                    server,
+            playtimes.put(server,
                     playtimes.getOrDefault(server, 0L) + diff
             );
 
@@ -25,6 +34,7 @@ public class PlaytimeManager {
     }
 
     public static String getPlaytime() {
+
         String server = ServerTracker.getCurrentServer();
 
         long seconds = playtimes.getOrDefault(server, 0L);
