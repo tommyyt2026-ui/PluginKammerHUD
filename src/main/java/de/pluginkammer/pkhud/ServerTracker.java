@@ -8,12 +8,13 @@ public class ServerTracker {
     public static String getCurrentServer() {
         MinecraftClient client = MinecraftClient.getInstance();
 
-        ServerInfo info = client.getCurrentServerEntry();
-
-        if (info == null) {
-            return "singleplayer";
+        if (client.getCurrentServerEntry() != null) {
+            ServerInfo info = client.getCurrentServerEntry();
+            if (info.address != null && !info.address.isEmpty()) {
+                return info.address;
+            }
         }
 
-        return info.address;
+        return "singleplayer";
     }
 }
