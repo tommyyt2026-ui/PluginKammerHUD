@@ -2,8 +2,8 @@ package de.pluginkammer.pkhud;
 
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.network.ServerInfo;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.network.ServerInfo;
 
 public class HudRenderer implements HudRenderCallback {
 
@@ -36,6 +36,7 @@ public class HudRenderer implements HudRenderCallback {
         }
 
         String ping = "Ping: ?";
+
         if (client.getNetworkHandler() != null) {
             var entry = client.getNetworkHandler()
                     .getPlayerListEntry(client.player.getUuid());
@@ -44,6 +45,8 @@ public class HudRenderer implements HudRenderCallback {
                 ping = "Ping: " + entry.getLatency() + "ms";
             }
         }
+
+        String playtime = "Playtime: " + PlaytimeManager.getPlaytime();
 
         drawContext.drawText(
                 client.textRenderer,
@@ -92,9 +95,18 @@ public class HudRenderer implements HudRenderCallback {
 
         drawContext.drawText(
                 client.textRenderer,
-                "=======================",
+                playtime,
                 x,
                 y + 60,
+                0xFFFFFF,
+                true
+        );
+
+        drawContext.drawText(
+                client.textRenderer,
+                "=======================",
+                x,
+                y + 72,
                 0xFFFFFF,
                 true
         );
